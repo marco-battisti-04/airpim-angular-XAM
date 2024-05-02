@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-key-value-text',
@@ -11,6 +12,8 @@ export class KeyValueTextComponent {
 
   @Input() key: string = "";
   @Input() value: string = "";
+  @Input() graph: boolean = false;
+  @Input()progress: number = 0;
 
   constructor() {
     

@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 23px;
+}
+
+.left, .right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+}
+
+.loading-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    border: none;
+    background-color: #003ee7;
+
+}
