@@ -9,9 +9,70 @@
     height: 10%;
 }
 
-
 .main-container {
     width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.upper-side-container {
+    width: 90%;
+    height: 39%;
+    margin-bottom: 1%;
+}
+
+.text-container {
+    width: 100%;
+    height: 50%;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.left-side {
+    width: 40%;
     height: 100%;
-    background-color: aqua;
+    margin-left: 0px;
+    padding: 10px;
+    margin-right: auto;
+}
+
+.graph-row {
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+    padding: 10px;
+    margin-right: auto;
+}
+
+.right-side {
+    width: 40%;
+    height: 100%;
+    margin-right: 0px;
+    padding: 10px;
+    margin-left: auto;
+
+}
+
+.graph-container {
+    width: 100%;
+    height: 50%;
+}
+
+
+
+
+
+.lower-side-container {
+    width: 90%;
+    height: 47%;
+    margin-top: 1%;
+    /* TODO: remove background color here */
+    background-color: red;
 }

@@ -9,19 +9,72 @@
 
     <div class="main-container">
         <div class="upper-side-container">
-            <div class="text-side-container">
+            <div class="text-container">
                 <div class="row">
                     <div class="left-side">
-                        
+                        <app-key-value-text
+                            key="AG"
+                            value="1000"
+                        ></app-key-value-text>
                     </div>
                     <div class="right-side">
+                            <app-key-value-text
+                            key=" Bez AG"
+                            value="DRE FRA"
+                        ></app-key-value-text>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="left-side">
+                        <app-key-value-text
+                            key="Lagerplatz"
+                            value="C31"
+                        ></app-key-value-text>
                     </div>
                 </div>
             </div>
 
             <div class="graph-container">
+                <div class="row">
+                    <div class="left-side">
+                        <app-key-value-text
+                            key="Programm"
+                            value="XXXXXXXXXXXXXXX"
+                        ></app-key-value-text>
+                    </div>
+                    <div class="right-side">
+                            <app-key-value-text
+                            key="Status"
+                            value="In Arbeit"
+                        ></app-key-value-text>
+                    </div>
+                </div>
 
+                <div class="row">
+                    <div class="graph-row">
+                        <app-key-value-text
+                            key="Fortschritt"
+                            [progress]="50"
+                            [graph]="true"
+                        ></app-key-value-text>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="left-side">
+                        <app-key-value-text
+                            key="Gefertigt"
+                            value="1"
+                        ></app-key-value-text>
+                    </div>
+                    <div class="right-side">
+                            <app-key-value-text
+                            key=" Aussschuss"
+                            value="0"
+                        ></app-key-value-text>
+                    </div>
+                </div>
             </div>
         </div>
 
