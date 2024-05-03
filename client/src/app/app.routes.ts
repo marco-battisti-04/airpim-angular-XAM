@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
+import { OrderListComponent } from '../components/order-list/order-list.component';
 
 export const routes: Routes = [
     {
@@ -9,11 +10,15 @@ export const routes: Routes = [
         pathMatch: 'full'
     },
     {
-        path: 'dashboard',
-        component: DashboardComponent
+        path: 'list',
+        component: OrderListComponent
     },
     {
         path: 'dashboard/:id',
         component: DashboardComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'list'
     }
 ];
