@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="header-container">
+        <app-header
+            ordernumber="0000000"
+            otherid="31003">
+        </app-header>
+    </div>
+
+
+    <div class="main-container">
+        
+        <div class="list-container">
+            <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    @for (row of orders; track row.id){
+                        <tr> 
+                            <td>{{ row.id }}</td>
+                            <td>{{ row.titolo }}</td>
+                        </tr>
+                    }                
+                </tbody>
+            </table>
+        </div>
+          
+    </div>
+    
+</div>
