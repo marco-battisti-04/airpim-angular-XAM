@@ -21,7 +21,8 @@
 .upper-side-container {
     width: 90%;
     height: 39%;
-    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-bottom: 0.5%;
 }
 
 .text-container {
@@ -57,7 +58,6 @@
     margin-right: 0px;
     padding: 10px;
     margin-left: auto;
-
 }
 
 .graph-container {
@@ -65,14 +65,31 @@
     height: 50%;
 }
 
-
-
-
-
 .lower-side-container {
     width: 90%;
-    height: 47%;
+    height: 51%;
     margin-top: 1%;
-    /* TODO: remove background color here */
-    background-color: red;
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../assets/images/backgrouond.jpg");
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+}
+
+.square {
+    width: 8.1%;
+    height: 100%;
+}
+
+.space-between {
+    width: 2%;
+    height: 100%;
+    background-color: #4b4c54;
+}
+
+.space-orizzontally {
+    width: 100%;
+    height: 7%;
+    background-color: #4b4c54;
 }
