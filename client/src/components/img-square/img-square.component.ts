@@ -11,4 +11,5 @@ export class ImgSquareComponent {
 
   @Input() img: string = "../../assets/images/user.png";
   @Input() text: string = "Undefined";
+  @Input() invisible: boolean = false;
 }

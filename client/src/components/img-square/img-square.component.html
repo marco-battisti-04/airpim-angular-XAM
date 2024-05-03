@@ -1,9 +1,16 @@
-<div class="container">      
-    <div class="logo-container">
-        <img class="logo" src="{{img}}" alt="">
+@if(invisible === false) {
+    <div class="container">      
+        <div class="logo-container">
+            <img class="logo" src="{{img}}" alt="">
+        </div>
+    
+        <div class="text-container">
+            <span>{{text}}</span>
+        </div> 
     </div>
+}
 
-    <div class="text-container">
-        <span>{{text}}</span>
-    </div> 
-</div>
+@if(invisible === true) {
+    <div class="invisible-container">      
+    </div>
+}       
