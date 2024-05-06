@@ -14,12 +14,12 @@ export class OrderListComponent {
   orders: any[] = []
 
   constructor(private http: HttpClient) {
-    this.getOrders();
+    this.getMachines();
   }
 
-  async getOrders() {
-    this.http.get('http://localhost:50000/ordini').subscribe((data: any) => {
-      this.orders = data;
+  async getMachines() {
+    this.orders = await fetch('http://localhost:50000/machines').then(data => {
+      return data.json();
     })
   }
 }

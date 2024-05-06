@@ -1,8 +1,6 @@
 <div class="container">
     <div class="header-container">
-        <app-header
-            ordernumber="0000000"
-            otherid="31003">
+        <app-header>
         </app-header>
     </div>
 
@@ -10,6 +8,10 @@
     <div class="main-container">
         
         <div class="list-container">
+
+            
+
+            
             <table>
                 <thead>
                   <tr>
@@ -21,7 +23,7 @@
                     @for (row of orders; track row.id){
                         <tr> 
                             <td>{{ row.id }}</td>
-                            <td>{{ row.titolo }}</td>
+                            <td>{{ row.name }}</td>
                         </tr>
                     }                
                 </tbody>
