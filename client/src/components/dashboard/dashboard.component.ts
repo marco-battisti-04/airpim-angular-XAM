@@ -29,7 +29,8 @@ export class DashboardComponent {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    // private dialog: MatDialog
   ) {
 
     this.route.paramMap.subscribe(params => {
