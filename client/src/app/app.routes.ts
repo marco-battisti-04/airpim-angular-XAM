@@ -14,7 +14,7 @@ export const routes: Routes = [
         component: OrderListComponent
     },
     {
-        path: 'dashboard/:id',
+        path: 'dashboard/:mc/:id',
         component: DashboardComponent
     },
     {
