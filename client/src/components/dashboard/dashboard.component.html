@@ -1,4 +1,5 @@
 
+@if(isPopupVisible === false){
 <div class="container">
     <div class="header-container">
         <app-header
@@ -83,8 +84,10 @@
         <div class="lower-side-container">
 
             <div class="row" style="display: flex; justify-content: center;">
-                <div class="square">
-                    <app-img-square></app-img-square>
+                <div class="square" (click)="openPopup()">
+                    <app-img-square 
+                    text="Disegno"
+                    ></app-img-square>
                 </div>
 
                 <div class="space-between"></div>
@@ -270,6 +273,14 @@
         </div>
     </div>
 </div>
+}
+
+@if(isPopupVisible === true) {
+    <app-popup-order-img
+    (popup)="closePopup($event)"
+    ></app-popup-order-img>
+    <!-- [img]="popupImg" -->
+}
 
 
 <!-- 

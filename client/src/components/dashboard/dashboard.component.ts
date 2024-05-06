@@ -6,19 +6,26 @@ import { CommonModule } from '@angular/common';
 import { ImgSquareComponent } from '../img-square/img-square.component';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, KeyValueTextComponent, ImgSquareComponent],
+  imports: [HeaderComponent, KeyValueTextComponent, ImgSquareComponent, PopupOrderImgComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+
+  // HEADER VARIABLES
   ordernumber: string = "";
   otherId: string = "";
   left_header_text: string = "";
   right_header_text: string = "";
+
+  // POPUP VARIABLES
+  isPopupVisible: boolean = false;
+  popupImg: string = "";  
 
   constructor(
     private http: HttpClient,
@@ -47,11 +54,18 @@ export class DashboardComponent {
    */
   async getOrder(mc: number, orderId: number) {
 
-    /*let response = await this.http.get(`localhost:50000/order/${mc}/${orderId}`).subscribe((data: any) => {
-      return data;
-    })*/
-
     this.left_header_text = "test modificato dopo";
     this.right_header_text = "test2 modificato dopo";
+  }
+
+  openPopup() {
+    this.isPopupVisible = true;
+  }
+  closePopup(event: any) {
+    this.isPopupVisible = event;
+  }
+
+  test() {
+    console.log("test");
   }
 }
