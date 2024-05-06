@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-popup-order-img',
@@ -9,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class PopupOrderImgComponent {
 
+  @Input() img: string = "../../assets/images/img_test_1920x1080.jpg";
+
+  @Output() popup = new EventEmitter<boolean>();
+
+  closePopup() {
+    this.popup.emit(false);
+  }
 }
