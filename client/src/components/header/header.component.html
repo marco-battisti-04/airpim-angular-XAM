@@ -3,16 +3,18 @@
     <div class="magazine-order-container">
         <div class="magazine-text-container">
 
-            <span class="magazine-text">Lagerauftrag</span>
-            <span class="magazine-text">{{ordernumber}}</span>
+            @if(ordernumber != "") {
+                <span class="magazine-text">Lagerauftrag</span>
+                <span class="magazine-text">{{ordernumber}}</span>
+            }
         </div>
     </div>
 
     <div class="idk-container">
         <div class="idk-text-container">
 
-            <span class="idk-text">KLEMMBOLZEN Y-LENKER</span>
-            <span style="margin-left: 40px;" class="idk-text">DREHGESTELL</span>
+            <span class="idk-text">{{ left_header_text }}</span>
+            <span style="margin-left: 40px;" class="idk-text">{{ right_header_text }}</span>
         </div>
     </div>
 

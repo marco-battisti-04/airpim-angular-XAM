@@ -11,8 +11,10 @@ import { Component, Input } from '@angular/core';
 })
 export class HeaderComponent {
 
-  @Input() ordernumber: string = "0000000";
-  @Input() otherid: string = "00000";
+  @Input() ordernumber: string = "";
+  @Input() otherid: string = "";
+  @Input() left_header_text: string = "";
+  @Input() right_header_text: string = "";
 
   currentDate = new Date();
   datePipe: DatePipe = new DatePipe('en-US');
