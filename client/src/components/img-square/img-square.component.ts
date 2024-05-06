@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
 })
 export class ImgSquareComponent {
 
-  @Input() img: string = "../../assets/images/user.png";
+  @Input() img: string = "../../assets/images/page_icons/user.png";
   @Input() text: string = "Undefined";
   @Input() invisible: boolean = false;
 }
