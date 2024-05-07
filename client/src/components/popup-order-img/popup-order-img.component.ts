@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-popup-order-img',
@@ -7,13 +7,18 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   templateUrl: './popup-order-img.component.html',
   styleUrl: './popup-order-img.component.css'
 })
-export class PopupOrderImgComponent {
+export class PopupOrderImgComponent implements OnInit {
 
   @Input() img: string = "../../assets/images/img_test_1920x1080.jpg";
 
   @Output() popup = new EventEmitter<boolean>();
 
+  constructor() { }
+  ngOnInit(): void {
+  }
+
   closePopup() {
     this.popup.emit(false);
   }
+  
 }
