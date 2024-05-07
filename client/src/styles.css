@@ -12,3 +12,5 @@ body {
     /* TODO: change background color to the correct one */
     background-color: #4b4c54;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
