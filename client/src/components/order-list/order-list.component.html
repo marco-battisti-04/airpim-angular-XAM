@@ -6,13 +6,33 @@
 
 
     <div class="main-container">
-        
+        <div class="search-container">
+
+        </div>
+
         <div class="list-container">
 
-            
+            @for (rowList of rowMachinesList; track rowList){
+                
+                <div class="row">
+                    @for (item of rowList; track item.id){
+                        <div class="machines-container" (click)="goToMachine(item.id)">
+                            <app-machines-container
+                            [id]="item.id"
+                            [name]="item.name"
+                            [desc]="item.desc"
+                            >
 
-            
-            <table>
+                            </app-machines-container>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+        
+        <!-- 
+        <div class="list-container">
+                <table>
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -29,6 +49,7 @@
                 </tbody>
             </table>
         </div>
+        -->
           
     </div>
     
