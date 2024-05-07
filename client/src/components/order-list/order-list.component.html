@@ -12,7 +12,7 @@
             @for (rowList of rowMachinesList; track rowList){
                 <div class="row">
                     @for (item of rowList; track item.id){
-                        <div class="machines-container" (click)="goToMachine(item.id)">
+                        <div class="machines-container" (click)="goToOrder(item.id)">
                             <app-machines-container
                             [id]="item.id"
                             [name]="item.name"
@@ -23,6 +23,11 @@
                     }
                 </div>
             }
+        </div>
+        <div class="go-back-container">
+            <button (click)="goBack()" style="margin-left: auto; margin-right: 40px; font-size: large; color: white; background-color: #2e2f34; border: none; padding: 10px;">
+                go back to machines
+            </button>
         </div>
     </div>
 </div>

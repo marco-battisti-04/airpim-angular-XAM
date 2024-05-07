@@ -16,13 +16,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: red;
 }
 
 .list-container {
     width: 95%;
-    height: 90%;
-    background-color: green;
+    height: 80%;
     justify-content: center;
     align-items: center;
     overflow: scroll;
@@ -32,15 +30,22 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: yellow;
     width: 100%;
-    height: 3   0%;
+    height: 30%;
 }
 
 
 .machines-container {
     width: 22%;
     height: 90%;
-    background-color: blue;
     margin: 1%;
+}
+
+.go-back-container {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }

@@ -62,8 +62,11 @@ export class OrderListComponent {
 
   }
 
-  goToMachine(id: number) {
-    console.log(`/dashboard/${id}`)
+  goToOrder(id: number) {
     window.location.href = `/dashboard/${this.mc}/${id}/`;
+  }
+
+  goBack() {
+    window.location.href = `/machines/list`;
   }
 }

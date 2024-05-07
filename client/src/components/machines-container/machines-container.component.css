@@ -6,6 +6,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #2e2f34;
+    border-radius: 6px;
 }
 
 span {
