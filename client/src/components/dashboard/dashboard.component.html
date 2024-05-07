@@ -1,10 +1,9 @@
 
-@if(isPopupVisible === false){
 <div class="container">
     <div class="header-container">
         <app-header
             [ordernumber]="ordernumber"
-            [otherid]="otherId"
+            [mcId]="mcId"
             [left_header_text]="left_header_text"
             [right_header_text]="right_header_text">
         </app-header>
@@ -85,54 +84,12 @@
 
             <div class="row" style="display: flex; justify-content: center;">
                 <div class="square" (click)="openPopup()">
-                    <app-img-square 
+                    <app-img-square
                     text="Disegno"
                     ></app-img-square>
                 </div>
 
                 <div class="space-between"></div>
-                
-                <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-                
-                <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
 
                 <div class="square" id="space-left">
                     <app-img-square></app-img-square>
@@ -143,54 +100,35 @@
                 <div class="square" id="space-left">
                     <app-img-square></app-img-square>
                 </div>
-            </div>
 
-            <div class="space-orizzontally"></div>
+                <div class="space-between"></div>
 
-            <div class="row" style="display: flex; justify-content: center;">
-                <div class="square">
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
                     <app-img-square></app-img-square>
-                </div>
-                <div class="space-between"></div>
-                
-                <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
-                </div>
-
-                <div class="space-between"></div>
-                
-                <div class="square" id="space-left">
-                    <app-img-square [invisible]="true"></app-img-square>
                 </div>
 
                 <div class="space-between"></div>
@@ -212,9 +150,70 @@
                 <div class="square">
                     <app-img-square></app-img-square>
                 </div>
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square></app-img-square>
+                </div>
 
                 <div class="space-between"></div>
-                
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square [invisible]="true"></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
+                <div class="square" id="space-left">
+                    <app-img-square></app-img-square>
+                </div>
+            </div>
+
+            <div class="space-orizzontally"></div>
+
+            <div class="row" style="display: flex; justify-content: center;">
+                <div class="square">
+                    <app-img-square></app-img-square>
+                </div>
+
+                <div class="space-between"></div>
+
                 <div class="square" id="space-left">
                     <app-img-square></app-img-square>
                 </div>
@@ -250,7 +249,7 @@
                 </div>
 
                 <div class="space-between"></div>
-                
+
                 <div class="square" id="space-left">
                     <app-img-square></app-img-square>
                 </div>
@@ -269,21 +268,25 @@
             </div>
 
             <div class="space-orizzontally"></div>
-        
+
         </div>
     </div>
+
+    
+    @if(isPopupVisible === true) {
+        <div class="popup-container">
+            <app-popup-order-img
+            (popup)="closePopup($event)"
+            ></app-popup-order-img>
+        </div>
+        <!-- [img]="popupImg" -->
+    }
 </div>
-}
-
-@if(isPopupVisible === true) {
-    <app-popup-order-img
-    (popup)="closePopup($event)"
-    ></app-popup-order-img>
-    <!-- [img]="popupImg" -->
-}
 
 
-<!-- 
+
+
+<!--
 
     lista ordini
     rendicontazione

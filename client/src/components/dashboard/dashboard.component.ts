@@ -14,29 +14,28 @@ import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.compo
   imports: [HeaderComponent, KeyValueTextComponent, ImgSquareComponent, PopupOrderImgComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
-})
+})  
 export class DashboardComponent {
 
   // HEADER VARIABLES
-  ordernumber: string = "";
-  otherId: string = "";
+  ordernumber: string = "0";
+  mcId: string = "";
   left_header_text: string = "";
   right_header_text: string = "";
 
   // POPUP VARIABLES
   isPopupVisible: boolean = false;
-  popupImg: string = "";  
+  popupImg: string = "";
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute,
-    // private dialog: MatDialog
+    private route: ActivatedRoute,      
   ) {
 
     this.route.paramMap.subscribe(params => {
       const mc = params.get('mc');
       const orderId = params.get('id');
-      
+
       try {
         let mc2Number = Number(mc);
         let OrderId2Number = Number(orderId);
@@ -62,11 +61,8 @@ export class DashboardComponent {
   openPopup() {
     this.isPopupVisible = true;
   }
+
   closePopup(event: any) {
     this.isPopupVisible = event;
-  }
-
-  test() {
-    console.log("test");
   }
 }
