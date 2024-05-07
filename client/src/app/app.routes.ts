@@ -14,6 +14,10 @@ export const routes: Routes = [
         component: OrderListComponent
     },
     {
+        path: 'dashboard/:mc/list',
+        component: DashboardComponent
+    },
+    {
         path: 'dashboard/:mc/:id',
         component: DashboardComponent
     },

@@ -51,6 +51,6 @@ export class OrderListComponent {
 
   goToMachine(id: number) {
     console.log(`/dashboard/${id}`)
-    window.location.href = `/dashboard/${id}`;
+    window.location.href = `/dashboard/${id}/list`;
   }
 }
