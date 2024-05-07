@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Routes } from '@angular/router';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { OrderListComponent } from '../components/order-list/order-list.component';
+import { MachineListComponent } from '../components/machine-list/machine-list.component';
 
 export const routes: Routes = [
     {
@@ -11,11 +12,11 @@ export const routes: Routes = [
     },
     {
         path: 'machines/list',
-        component: OrderListComponent
+        component: MachineListComponent
     },
     {
         path: 'orders/:mc/list',
-        component: DashboardComponent
+        component: OrderListComponent   
     },
     {
         path: 'dashboard/:mc/:id',

@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
+import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 
 @Component({
   selector: 'app-machine-list',
   standalone: true,
-  imports: [],
+  imports: [HeaderComponent, MachinesContainerComponent],
   templateUrl: './machine-list.component.html',
   styleUrl: './machine-list.component.css'
 })
@@ -46,8 +48,8 @@ export class MachineListComponent {
 
   }
 
-  goToMachine(id: number) {
-    console.log(`/dashboard/${id}`)
-    window.location.href = `/dashboard/${id}/list`;
+  goToMachine(mc: number) {
+    console.log(`/dashboard/${mc}`)
+    window.location.href = `/orders/${mc}/list`;
   }
 }

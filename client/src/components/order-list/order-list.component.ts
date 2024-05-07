@@ -3,7 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { get } from 'http';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-order-list',
@@ -14,18 +14,31 @@ import { Router } from '@angular/router';
 })
 export class OrderListComponent {
   machines: any[] = []
-  
+  mc: number = 0;
   rowMachinesList: any[] = [];
 
   constructor(
     private http: HttpClient,
-    private router: Router 
+    private router: Router,
+    private route: ActivatedRoute,   
   ) {
+
+    this.route.paramMap.subscribe(params => {
+      const mc = params.get('mc');
+
+      try {
+        this.mc = Number(mc);
+      }catch(error) {
+        console.error(error);
+      }
+    });
+
+
     this.getMachines();
   }
 
   async getMachines() {
-    this.machines = await fetch('http://localhost:50000/machines').then(data => { return data.json(); });
+    this.machines = await fetch('http://localhost:50000/orders').then(data => { return data.json(); });
 
     let orderList = [];
     let currentIndex = 0;
@@ -51,6 +64,6 @@ export class OrderListComponent {
 
   goToMachine(id: number) {
     console.log(`/dashboard/${id}`)
-    window.location.href = `/dashboard/${id}/list`;
+    window.location.href = `/dashboard/${this.mc}/${id}/`;
   }
 }
