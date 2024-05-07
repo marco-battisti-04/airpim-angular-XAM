@@ -6,15 +6,15 @@ import { OrderListComponent } from '../components/order-list/order-list.componen
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'machines/list',
         pathMatch: 'full'
     },
     {
-        path: 'list',
+        path: 'machines/list',
         component: OrderListComponent
     },
     {
-        path: 'dashboard/:mc/list',
+        path: 'orders/:mc/list',
         component: DashboardComponent
     },
     {

@@ -4,16 +4,12 @@
         </app-header>
     </div>
 
-
     <div class="main-container">
         <div class="search-container">
-
         </div>
 
         <div class="list-container">
-
             @for (rowList of rowMachinesList; track rowList){
-                
                 <div class="row">
                     @for (item of rowList; track item.id){
                         <div class="machines-container" (click)="goToMachine(item.id)">
@@ -22,35 +18,11 @@
                             [name]="item.name"
                             [desc]="item.desc"
                             >
-
                             </app-machines-container>
                         </div>
                     }
                 </div>
             }
         </div>
-        
-        <!-- 
-        <div class="list-container">
-                <table>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                  </tr>
-                </thead>
-                <tbody>
-                    @for (row of orders; track row.id){
-                        <tr> 
-                            <td>{{ row.id }}</td>
-                            <td>{{ row.name }}</td>
-                        </tr>
-                    }                
-                </tbody>
-            </table>
-        </div>
-        -->
-          
     </div>
-    
 </div>
