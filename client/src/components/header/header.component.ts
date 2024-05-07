@@ -12,16 +12,14 @@ import { Component, Input } from '@angular/core';
 export class HeaderComponent {
 
   @Input() ordernumber: string = "";
-  @Input() otherid: string = "";
+  @Input() mcId: string = "";
   @Input() left_header_text: string = "";
   @Input() right_header_text: string = "";
 
   currentDate = new Date();
   datePipe: DatePipe = new DatePipe('en-US');
 
-  constructor(private pipe: DatePipe) {
-
-  }
+  constructor(private pipe: DatePipe) { }
 
   getCurrentdate() {
     return this.datePipe.transform(this.currentDate, "dd/MM/yyyy");
