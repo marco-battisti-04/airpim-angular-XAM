@@ -16,6 +16,9 @@ export class HeaderComponent {
   @Input() left_header_text: string = "";
   @Input() right_header_text: string = "";
 
+  @Input() isTitle: boolean = false;
+  @Input() pageTitle: string = "";
+
   currentDate = new Date();
   datePipe: DatePipe = new DatePipe('en-US');
 

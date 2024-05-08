@@ -10,12 +10,19 @@
         </div>
     </div>
 
-    <div class="idk-container">
-        <div class="idk-text-container">
+    <div class="title-container">
+        @if(isTitle === true) {
+            <div class="sub-title-container">
+                <span style="font-size: 50px; margin-left: auto; margin-right: 0px;">{{ pageTitle }}</span>
+            </div>
+        }
 
-            <span class="idk-text">{{ left_header_text }}</span>
-            <span style="margin-left: 40px;" class="idk-text">{{ right_header_text }}</span>
-        </div>
+        @if(isTitle === false) {
+            <div class="title-text-container">
+                <span class="title-text">{{ left_header_text }}</span>
+                <span class="title-text">{{ right_header_text }}</span>
+            </div>
+        }
     </div>
 
     <div class="data-container">
