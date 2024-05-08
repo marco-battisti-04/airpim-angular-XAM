@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -8,7 +8,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
   templateUrl: './popup-order-img.component.html',
   styleUrl: './popup-order-img.component.css'
 })
-export class PopupOrderImgComponent implements OnInit {
+export class PopupOrderImgComponent {
 
   @Input() img: string = "";
   @Output() popup = new EventEmitter<boolean>();
@@ -16,8 +16,6 @@ export class PopupOrderImgComponent implements OnInit {
   imageSrc!: SafeUrl;
 
   constructor(private sanitizer: DomSanitizer) { 
-  }
-  ngOnInit(): void {
   }
 
   closePopup() {

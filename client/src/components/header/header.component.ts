@@ -22,7 +22,7 @@ export class HeaderComponent {
   currentDate = new Date();
   datePipe: DatePipe = new DatePipe('en-US');
 
-  constructor(private pipe: DatePipe) { }
+  constructor() { }
 
   getCurrentdate() {
     return this.datePipe.transform(this.currentDate, "dd/MM/yyyy");

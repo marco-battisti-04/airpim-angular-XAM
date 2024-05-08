@@ -12,9 +12,5 @@ export class OrdersContainerComponent {
   @Input() id: number = 0;
   @Input() name: string = "";
   @Input() desc: string = "";
-
-
-  constructor() {
-    
-  }
+  
 }

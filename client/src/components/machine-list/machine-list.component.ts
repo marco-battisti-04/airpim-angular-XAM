@@ -1,6 +1,4 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { HeaderComponent } from '../header/header.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 
@@ -16,10 +14,7 @@ export class MachineListComponent {
   
   rowMachinesList: any[] = [];
 
-  constructor(
-    private http: HttpClient,
-    private router: Router 
-  ) {
+  constructor() {
     this.getMachines();
   }
 

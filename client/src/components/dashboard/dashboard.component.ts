@@ -68,16 +68,9 @@ export class DashboardComponent {
     });
   }
 
-  /**
-   * prende i dati degli ordini
-   * @param mc la macchina dove si trova l'ordine
-   * @param orderId l'id dell'ordine
-   */
   async getOrder(mc: number, orderId: number) {
-
     this.http.get("http://localhost:50000/order/" + mc + "/" + orderId).subscribe((data: any) => {
         this.order = data;
-      // console.log(data)
     })
   }
 

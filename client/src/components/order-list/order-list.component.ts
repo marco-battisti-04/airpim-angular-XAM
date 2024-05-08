@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
-import { HttpClient, HttpHandler } from '@angular/common/http';
-import { get } from 'http';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { OrdersContainerComponent } from '../orders-container/orders-container.component';
 
 @Component({
@@ -17,12 +15,9 @@ export class OrderListComponent {
   machines: any[] = []
   mc: number = 0;
   rowMachinesList: any[] = [];
-
   pageTitle: string = "";
 
   constructor(
-    private http: HttpClient,
-    private router: Router,
     private route: ActivatedRoute,   
   ) {
 
@@ -32,17 +27,15 @@ export class OrderListComponent {
       try {
         this.mc = Number(mc);
         this.pageTitle = "Orders Of Machine: " + this.mc;
+        this.getMachines(this.mc);
       }catch(error) {
         console.error(error);
       }
     });
-
-
-    this.getMachines();
   }
 
-  async getMachines() {
-    this.machines = await fetch('http://localhost:50000/orders').then(data => { return data.json(); });
+  async getMachines(mc: number) {
+    this.machines = await fetch(`http://localhost:50000/${mc}/orders`).then(data => { return data.json(); });
 
     let orderList = [];
     let currentIndex = 0;

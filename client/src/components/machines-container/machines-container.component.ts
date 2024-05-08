@@ -13,9 +13,5 @@ export class MachinesContainerComponent {
   @Input() name: string = "";
   @Input() desc: string = "";
   @Input() nOrders: number = 0;
-
-
-  constructor() {
-    
-  }
+  
 }
