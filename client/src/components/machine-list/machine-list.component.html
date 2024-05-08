@@ -1,13 +1,12 @@
 <div class="container">
     <div class="header-container">
-        <app-header>
-        </app-header>
+        <app-header
+        [isTitle]="true"
+        pageTitle="Machines List"
+        ></app-header>
     </div>
 
     <div class="main-container">
-        <div class="search-container">
-        </div>
-
         <div class="list-container">
             @for (rowList of rowMachinesList; track rowList){
                 <div class="row">
@@ -16,7 +15,7 @@
                             <app-machines-container
                             [id]="item.id"
                             [name]="item.name"
-                            [desc]="item.desc"
+                            [nOrders]="item.nOrdini"
                             >
                             </app-machines-container>
                         </div>

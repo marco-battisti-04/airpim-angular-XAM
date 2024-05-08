@@ -7,10 +7,38 @@
     justify-content: center;
     align-items: center;
     background-color: #2e2f34;
-    border-radius: 6px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    
+    /* padding: 5px; */
 }
 
 span {
     margin: 5px;
 }
 
+.container:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.container:active {
+    background-color: #003366;
+}
+
+@keyframes Animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.container:hover,
+.container:active {
+    animation: Animation 0.3s ease;
+}

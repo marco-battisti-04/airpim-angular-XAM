@@ -29,7 +29,6 @@ export class MachineListComponent {
     let orderList = [];
     let currentIndex = 0;
     let totalItems = this.machines.length;
-    // console.log(this.machines)
     for(let machine of this.machines) {
       
       if(orderList.length === 4) {
@@ -43,13 +42,9 @@ export class MachineListComponent {
       }
       currentIndex++;
     } 
-
-    console.log(this.rowMachinesList)
-
   }
 
   goToMachine(mc: number) {
-    console.log(`/dashboard/${mc}`)
     window.location.href = `/orders/${mc}/list`;
   }
 }

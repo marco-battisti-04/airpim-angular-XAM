@@ -4,11 +4,12 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { get } from 'http';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { OrdersContainerComponent } from '../orders-container/orders-container.component';
 
 @Component({
   selector: 'app-order-list',
   standalone: true,
-  imports: [HeaderComponent, MachinesContainerComponent],
+  imports: [HeaderComponent, MachinesContainerComponent, OrdersContainerComponent],
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.css'
 })
@@ -16,6 +17,8 @@ export class OrderListComponent {
   machines: any[] = []
   mc: number = 0;
   rowMachinesList: any[] = [];
+
+  pageTitle: string = "";
 
   constructor(
     private http: HttpClient,
@@ -28,6 +31,7 @@ export class OrderListComponent {
 
       try {
         this.mc = Number(mc);
+        this.pageTitle = "Orders Of Machine: " + this.mc;
       }catch(error) {
         console.error(error);
       }
@@ -43,7 +47,6 @@ export class OrderListComponent {
     let orderList = [];
     let currentIndex = 0;
     let totalItems = this.machines.length;
-    // console.log(this.machines)
     for(let machine of this.machines) {
       
       if(orderList.length === 4) {
@@ -57,9 +60,6 @@ export class OrderListComponent {
       }
       currentIndex++;
     } 
-
-    console.log(this.rowMachinesList)
-
   }
 
   goToOrder(id: number) {

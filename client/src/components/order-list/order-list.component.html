@@ -1,7 +1,9 @@
 <div class="container">
     <div class="header-container">
-        <app-header>
-        </app-header>
+        <app-header
+            [isTitle]="true"
+            [pageTitle]="pageTitle"
+        ></app-header>
     </div>
 
     <div class="main-container">
@@ -13,19 +15,19 @@
                 <div class="row">
                     @for (item of rowList; track item.id){
                         <div class="machines-container" (click)="goToOrder(item.id)">
-                            <app-machines-container
+                            <app-orders-container
                             [id]="item.id"
                             [name]="item.name"
                             [desc]="item.desc"
                             >
-                            </app-machines-container>
+                            </app-orders-container>
                         </div>
                     }
                 </div>
             }
         </div>
         <div class="go-back-container">
-            <button (click)="goBack()" style="margin-left: auto; margin-right: 40px; font-size: large; color: white; background-color: #2e2f34; border: none; padding: 10px;">
+            <button class="back-button" (click)="goBack()">
                 go back to machines
             </button>
         </div>
