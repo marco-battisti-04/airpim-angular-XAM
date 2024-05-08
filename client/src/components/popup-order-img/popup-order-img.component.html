@@ -8,6 +8,11 @@
     </div>
 
     <div class="img-container">
-        <img src="{{ img }}" alt="">
+        @if(img != ""){
+            <img [src]="'data:image/jpeg;base64,' + img" alt="Image">
+        }
+        @if(img == "") {
+            <img src="{{ getImageSrc() }}" alt="">
+        }
     </div>
 </div>
