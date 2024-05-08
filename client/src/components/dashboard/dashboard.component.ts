@@ -27,6 +27,22 @@ export class DashboardComponent {
   isPopupVisible: boolean = false;
   popupImg: string = "";
 
+  
+  order: any = {
+    mc: 0,
+    id: 0,
+    ag: 0,
+    bez_ag: "undefined",
+    lagerplatz: "undefined",
+    programm: "undefined",
+    status: "undefined",
+    fortschritt: 0,
+    gefertigt: 0,
+    aussschuss: 0,
+    text_left: "undefined",
+    text_right: "undefined"
+  }
+
   constructor(
     private http: HttpClient,
     private route: ActivatedRoute,      
@@ -36,13 +52,18 @@ export class DashboardComponent {
       const mc = params.get('mc');
       const orderId = params.get('id');
 
-      try {
-        let mc2Number = Number(mc);
-        let OrderId2Number = Number(orderId);
+      if(mc != null && orderId != null) {
+        this.ordernumber = orderId;
+        this.mcId = mc;
 
-        this.getOrder(mc2Number, OrderId2Number);
-      }catch(error) {
-        console.error(error);
+        try {
+          let mc2Number = Number(mc);
+          let OrderId2Number = Number(orderId);
+  
+          this.getOrder(mc2Number, OrderId2Number);
+        }catch(error) {
+          console.error(error);
+        }
       }
     });
   }
@@ -54,8 +75,10 @@ export class DashboardComponent {
    */
   async getOrder(mc: number, orderId: number) {
 
-    this.left_header_text = "test modificato dopo";
-    this.right_header_text = "test2 modificato dopo";
+    this.http.get("http://localhost:50000/order/" + mc + "/" + orderId).subscribe((data: any) => {
+        this.order = data;
+      // console.log(data)
+    })
   }
 
   openPopup() {

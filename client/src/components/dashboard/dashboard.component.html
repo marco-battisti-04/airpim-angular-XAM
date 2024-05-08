@@ -2,10 +2,10 @@
 <div class="container">
     <div class="header-container">
         <app-header
-            [ordernumber]="ordernumber"
-            [mcId]="mcId"
-            [left_header_text]="left_header_text"
-            [right_header_text]="right_header_text">
+            [ordernumber]="order.id"
+            [mcId]="order.mc"
+            [left_header_text]="order.text_left"
+            [right_header_text]="order.text_right">
         </app-header>
     </div>
 
@@ -16,13 +16,13 @@
                     <div class="left-side">
                         <app-key-value-text
                             key="AG"
-                            value="1000"
+                            [value]="order.ag"
                         ></app-key-value-text>
                     </div>
                     <div class="right-side">
                             <app-key-value-text
                             key=" Bez AG"
-                            value="DRE FRA"
+                            [value]="order.bez_ag"
                         ></app-key-value-text>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="left-side">
                         <app-key-value-text
                             key="Lagerplatz"
-                            value="C31"
+                            [value]="order.lagerplatz"
                         ></app-key-value-text>
                     </div>
                 </div>
@@ -42,13 +42,13 @@
                     <div class="left-side">
                         <app-key-value-text
                             key="Programm"
-                            value="XXXXXXXXXXXXXXX"
+                            [value]="order.programm"
                         ></app-key-value-text>
                     </div>
                     <div class="right-side">
                             <app-key-value-text
                             key="Status"
-                            value="In Arbeit"
+                            [value]="order.status"
                         ></app-key-value-text>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                     <div class="graph-row">
                         <app-key-value-text
                             key="Fortschritt"
-                            [progress]="50"
+                            [progress]="order.fortschritt"
                             [graph]="true"
                         ></app-key-value-text>
                     </div>
@@ -67,13 +67,13 @@
                     <div class="left-side">
                         <app-key-value-text
                             key="Gefertigt"
-                            value="1"
+                            [value]="order.gefertigt"
                         ></app-key-value-text>
                     </div>
                     <div class="right-side">
                             <app-key-value-text
                             key=" Aussschuss"
-                            value="0"
+                            [value]="order.aussschuss"
                         ></app-key-value-text>
                     </div>
                 </div>
@@ -85,14 +85,16 @@
             <div class="row" style="display: flex; justify-content: center;">
                 <div class="square" (click)="openPopup()">
                     <app-img-square
-                    text="Disegno"
+                        text="Disegno"
                     ></app-img-square>
                 </div>
 
                 <div class="space-between"></div>
 
                 <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
+                    <app-img-square
+                        text="rendicontazione"
+                    ></app-img-square>
                 </div>
 
                 <div class="space-between"></div>
@@ -276,10 +278,10 @@
     @if(isPopupVisible === true) {
         <div class="popup-container">
             <app-popup-order-img
+            [img]="order.image"
             (popup)="closePopup($event)"
             ></app-popup-order-img>
         </div>
-        <!-- [img]="popupImg" -->
     }
 </div>
 
@@ -287,8 +289,6 @@
 
 
 <!--
-
-    lista ordini
-    rendicontazione
-    disegno
+    rendicontazione (gestione dei pezzi dell'ordine da fare e gia fatti, creare
+     script che in base alla quantita di pezzi fatta e quella totale ritorna una percentuale di completamento)
  -->
