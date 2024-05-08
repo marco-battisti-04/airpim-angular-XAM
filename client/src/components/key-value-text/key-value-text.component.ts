@@ -13,7 +13,9 @@ export class KeyValueTextComponent {
   @Input() key: string = "";
   @Input() value: string = "";
   @Input() graph: boolean = false;
-  @Input()progress: number = 0;
+  @Input() progress: string = "";
+
+
 
   constructor() {
     
