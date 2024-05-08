@@ -7,11 +7,17 @@ import { ImgSquareComponent } from '../img-square/img-square.component';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.component';
+import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-status-popup.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, KeyValueTextComponent, ImgSquareComponent, PopupOrderImgComponent],
+  imports: [HeaderComponent, 
+    KeyValueTextComponent, 
+    ImgSquareComponent, 
+    PopupOrderImgComponent, 
+    AdvanceStatusPopupComponent
+  ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })  
@@ -25,6 +31,7 @@ export class DashboardComponent {
 
   // POPUP VARIABLES
   isPopupVisible: boolean = false;
+  isFormPopupVisible: boolean = false;
   popupImg: string = "";
 
   
@@ -36,7 +43,8 @@ export class DashboardComponent {
     lagerplatz: "undefined",
     programm: "undefined",
     status: "undefined",
-    fortschritt: 0,
+    progress: 0,
+    total: 0,
     gefertigt: 0,
     aussschuss: 0,
     text_left: "undefined",
@@ -74,11 +82,25 @@ export class DashboardComponent {
     })
   }
 
+  getPercentage(progress: number, total: number) {
+    const percentage = (progress / total) * 100;
+    return ( `${percentage.toFixed(2)}%`);
+  }
+
   openPopup() {
     this.isPopupVisible = true;
   }
 
   closePopup(event: any) {
     this.isPopupVisible = event;
+  }
+
+  openStatusForm() {
+    this.isPopupVisible = false;
+    this.isFormPopupVisible = true;
+  }
+
+  closeStatusForm(event: any) {
+    this.isFormPopupVisible = event;
   }
 }

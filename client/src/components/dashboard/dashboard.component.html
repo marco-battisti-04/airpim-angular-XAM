@@ -57,7 +57,7 @@
                     <div class="graph-row">
                         <app-key-value-text
                             key="Fortschritt"
-                            [progress]="order.fortschritt"
+                            [progress]="getPercentage(order.progress, order.total)"
                             [graph]="true"
                         ></app-key-value-text>
                     </div>
@@ -91,7 +91,7 @@
 
                 <div class="space-between"></div>
 
-                <div class="square" id="space-left">
+                <div class="square" id="space-left" (click)="openStatusForm()">
                     <app-img-square
                         text="rendicontazione"
                     ></app-img-square>
@@ -281,6 +281,16 @@
             [img]="order.image"
             (popup)="closePopup($event)"
             ></app-popup-order-img>
+        </div>
+    }
+
+    @if(isFormPopupVisible === true) {
+        <div class="popup-container">
+            <app-advance-status-popup
+            [order]="order"
+            
+            (popup)="closeStatusForm($event)"
+            ></app-advance-status-popup>
         </div>
     }
 </div>
