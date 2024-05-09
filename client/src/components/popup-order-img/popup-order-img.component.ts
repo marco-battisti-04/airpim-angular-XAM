@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import {CdkDrag} from '@angular/cdk/drag-drop'; 
 
 @Component({
   selector: 'app-popup-order-img',
   standalone: true,
-  imports: [],
+  imports: [CdkDrag],
   templateUrl: './popup-order-img.component.html',
   styleUrl: './popup-order-img.component.css'
 })
@@ -12,7 +13,11 @@ export class PopupOrderImgComponent {
 
   @Input() img: string = "";
   @Output() popup = new EventEmitter<boolean>();
+  
+  @ViewChild('container') container!: ElementRef;
+  @ViewChild('image') image!: ElementRef;
 
+  
   imageSrc!: SafeUrl;
 
   constructor(private sanitizer: DomSanitizer) { 
@@ -33,5 +38,15 @@ export class PopupOrderImgComponent {
       console.log(this.imageSrc)
       return this.imageSrc;
     }
+  }
+
+
+  moveImage(event: MouseEvent) {
+    const containerRect = this.container.nativeElement.getBoundingClientRect();
+    const offsetX = event.clientX - containerRect.left;
+    const offsetY = event.clientY - containerRect.top;
+
+    this.image.nativeElement.style.left = offsetX + 'px';
+    this.image.nativeElement.style.top = offsetY + 'px';
   }
 }

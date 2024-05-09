@@ -7,12 +7,12 @@
         </div>
     </div>
 
-    <div class="img-container">
+    <div class="img-container" #container>
         @if(img != ""){
-            <img [src]="'data:image/jpeg;base64,' + img" alt="Image">
+            <img cdkDrag [src]="'data:image/jpeg;base64,' + img" alt="Image" #image>
         }
         @if(img == "") {
-            <img src="{{ getImageSrc() }}" alt="">
+            <img cdkDrag src="{{ getImageSrc() }}" alt="Image" #image>
         }
     </div>
 </div>
