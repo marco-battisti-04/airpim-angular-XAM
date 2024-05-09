@@ -92,7 +92,14 @@ export class DashboardComponent {
   }
 
   closePopup(event: any) {
-    this.isPopupVisible = event;
+    this.isPopupVisible = event.open;
+    this.refreshData();
+  }
+
+  refreshData() {
+    this.http.get("http://localhost:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
+        this.order = data;
+    })
   }
 
   openStatusForm() {
