@@ -1,32 +1,46 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { KeyValueTextComponent } from '../key-value-text/key-value-text.component';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-advance-status-popup',
   standalone: true,
-  imports: [KeyValueTextComponent],
+  imports: [KeyValueTextComponent,
+    FormsModule,
+    ReactiveFormsModule],
   templateUrl: './advance-status-popup.component.html',
   styleUrl: './advance-status-popup.component.css'
 })
-export class AdvanceStatusPopupComponent {
+export class AdvanceStatusPopupComponent implements OnInit {
 
   @Input() order: any = {};
   // quantity: number = 0;
 
-  quantity = new FormControl('');
-
-  @Output() popup = new EventEmitter<boolean>();
+  form!:FormGroup
+  error: boolean = false;
+  errorMessage: string = "";
+  @Output() popup = new EventEmitter<any>();
   constructor() {
     
   }
 
-  closePopup() {
-    this.popup.emit(false);
+  ngOnInit(): void {
+
+    this.form = new FormGroup({
+      'quantity':new FormControl('',[Validators.required]),
+    })
   }
 
-  getProgressOption() {
-    console.log()
+  closePopup() {
+    this.popup.emit({
+      open: false,
+      order: this.order
+    });
+  }
+
+  getProgressOption() { 
     return ( this.order.total - this.order.progress );
   }
 
@@ -36,9 +50,51 @@ export class AdvanceStatusPopupComponent {
   }
 
   submitForm(event: any) {
-    event.preventDefault();
 
-    console.log(this.quantity.value);
-    // event.
+    let quantity = this.form.get('quantity')?.value;
+    let quantity2Number;
+    console.log(quantity)
+
+    if(quantity === "") {
+      this.error = true;
+      this.errorMessage = "Please insert a number between 0 and " + (this.order.total - this.order.progress);
+    }else {
+      try {
+        let quantity2Number = Number(quantity);
+  
+        this.error = false;
+        this.errorMessage = "";
+        
+        if((quantity2Number + this.order.progress) <= this.order.total) {
+          this.updateQuantity(quantity2Number);
+        }else {
+          this.error = true;
+          this.errorMessage = "Please insert a number between 0 and " + (this.order.total - this.order.progress);
+        }
+      }catch (error) {
+        this.error = true;
+        this.errorMessage = "Please insert a number";
+      }
+    }
+  }
+
+  async updateQuantity(quantity: number) {
+    this.order.progress += quantity;
+
+    if(this.order.progress === this.order.total) {
+      this.order.status = "Gefertigt";
+    }
+
+    fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/update`, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      // body: JSON.stringify({update: this.order})
+      body: JSON.stringify({progress: this.order.progress, status: this.order.status})
+    })
+
+    
   }
 }

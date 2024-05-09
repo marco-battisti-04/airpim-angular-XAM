@@ -21,7 +21,9 @@
         @if(getProgressOption() > 0) {   
             
             <span style="margin-top: 3%; margin-bottom: 3%; font-size: 30px;">Enter a number of completed pieces</span>
-            
+
+            <span style="font-size: larger;">pieces completed: {{order.progress}}</span>
+            <span style="font-size: larger;">total pieces: {{order.total}}</span>
             <div class="graph-container">
                 <div style="width: 70%; height: 100%; display: flex;">
                     <div class="loading-bar">
@@ -30,9 +32,13 @@
                 </div>
             </div>
 
+            @if(error === true) {
+                <span style="color: red;">{{ errorMessage }}</span>
+            }
+
             <div class="input-container">
-                <form (ngSubmit)="submitForm($event)">
-                    <input class="input" type="text" name="quantity" [formControl]="quantity" placeholder="Insert a number of pieces you have completed">
+                <form [formGroup]="form" (ngSubmit)="submitForm($event)">
+                    <input class="input" type="text" name="quantity" formControlName ="quantity" placeholder="Insert a number of pieces you have completed">
                     <button style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Submit</button>
                 </form>
             </div>
