@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { KeyValueTextComponent } from '../key-value-text/key-value-text.component';
 import { FormControl, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @Component({
   selector: 'app-advance-status-popup',
@@ -16,12 +16,14 @@ import { BrowserModule } from '@angular/platform-browser';
 export class AdvanceStatusPopupComponent implements OnInit {
 
   @Input() order: any = {};
-  // quantity: number = 0;
-
+  @Output() popup = new EventEmitter<any>();
+  
   form!:FormGroup
   error: boolean = false;
   errorMessage: string = "";
-  @Output() popup = new EventEmitter<any>();
+  
+
+  selectedRadioOption: string = this.order.phase;
   constructor() {
     
   }
@@ -29,7 +31,8 @@ export class AdvanceStatusPopupComponent implements OnInit {
   ngOnInit(): void {
 
     this.form = new FormGroup({
-      'quantity':new FormControl('',[Validators.required]),
+      'quantity':new FormControl(''),
+      'radio':new FormControl(''),
     })
   }
 
@@ -53,14 +56,14 @@ export class AdvanceStatusPopupComponent implements OnInit {
 
     let quantity = this.form.get('quantity')?.value;
     let quantity2Number;
-    console.log(quantity)
+    console.log( this.form.get('radio')?.value)
 
     if(quantity === "") {
       this.error = true;
       this.errorMessage = "Please insert a number between 0 and " + (this.order.total - this.order.progress);
     }else {
       try {
-        let quantity2Number = Number(quantity);
+        quantity2Number = Number(quantity);
   
         this.error = false;
         this.errorMessage = "";
@@ -94,7 +97,25 @@ export class AdvanceStatusPopupComponent implements OnInit {
       // body: JSON.stringify({update: this.order})
       body: JSON.stringify({progress: this.order.progress, status: this.order.status})
     })
+  }
 
+  switchPhase(event: any) {
+
+    this.form.get('radio')?.value
+    if(this.form.get('radio')?.value != "") {
+      fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/phase`, {
+
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      // body: JSON.stringify({update: this.order})
+      body: JSON.stringify({phase: this.form.get('radio')?.value})
+    })
+    }else {
+      this.error = true;
+      this.errorMessage = "Please select a phase";
+    }
     
   }
 }

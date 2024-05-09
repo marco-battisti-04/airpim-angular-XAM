@@ -5,6 +5,7 @@
             <span class="text-header-container" style="margin-left: 3%;">Machine ID: {{ order.mc }}</span>
             <span class="text-header-container">Order ID: {{ order.id }}</span>
             <span class="text-header-container">Status: {{ order.status }}</span>
+            <span class="text-header-container">Phase: {{ order.phase }}</span>
         </div>
         <div class="button-container">
             <button class="exit-button" (click)="closePopup()">
@@ -37,10 +38,41 @@
             }
 
             <div class="input-container">
-                <form [formGroup]="form" (ngSubmit)="submitForm($event)">
+                <form [formGroup]="form">
+                    
+                    <div class="radio-container">
+                        <div class="flex-container">
+                            
+
+                            <div class="left">
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase1"> Fase 1
+                                </label>
+            
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase2"> Fase 2
+                                </label>
+                            </div>
+        
+                            <div class="right">
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase3"> Fase 3
+                                </label>
+            
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase4"> Fase 4
+                                </label>
+                            </div>
+                        </div>
+    
+                        <button (click)="switchPhase($event)" style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Confirm</button>
+                    </div>
+
                     <input class="input" type="text" name="quantity" formControlName ="quantity" placeholder="Insert a number of pieces you have completed">
-                    <button style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Submit</button>
+                    <button (click)="submitForm($event)" style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Submit</button>
                 </form>
+
+                {{ selectedRadioOption}}
             </div>
         }
         
