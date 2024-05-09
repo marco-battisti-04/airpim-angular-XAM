@@ -13,6 +13,8 @@
     height: 75%;
     z-index: 4;
     position: absolute;
+    resize: both;
+    overflow: auto;
 }
 
 .header-container {
@@ -86,6 +88,7 @@
     flex-direction: column;
     background-image: url("../../assets/images/backgrouond.jpg");
     background-repeat: no-repeat;
+    background-size: contain;
     background-size: 60%;
     background-position: center;
 }

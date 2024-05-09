@@ -269,14 +269,14 @@
                 </div>
             </div>
 
-            <div class="space-orizzontally"></div>
+            <div style="width: 100%; height: 7%; background-color: #4b4c54;"></div>
 
         </div>
     </div>
 
-    
+    <!-- cdkDrag -->
     @if(isPopupVisible === true) {
-        <div class="popup-container">
+        <div class="popup-container" >
             <app-popup-order-img
             [img]="order.image"
             (popup)="closePopup($event)"
@@ -285,7 +285,7 @@
     }
 
     @if(isFormPopupVisible === true) {
-        <div class="popup-container">
+        <div class="popup-container" >
             <app-advance-status-popup
             [order]="order"
             

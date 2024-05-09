@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.component';
 import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-status-popup.component';
+import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +17,9 @@ import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-sta
     KeyValueTextComponent, 
     ImgSquareComponent, 
     PopupOrderImgComponent, 
-    AdvanceStatusPopupComponent
+    AdvanceStatusPopupComponent,
+
+    CdkDrag
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -48,7 +51,8 @@ export class DashboardComponent {
     gefertigt: 0,
     aussschuss: 0,
     text_left: "undefined",
-    text_right: "undefined"
+    text_right: "undefined",
+    image: ""
   }
 
   constructor(
@@ -89,6 +93,7 @@ export class DashboardComponent {
 
   openPopup() {
     this.isPopupVisible = true;
+    this.isFormPopupVisible = false;
   }
 
   closePopup(event: any) {
