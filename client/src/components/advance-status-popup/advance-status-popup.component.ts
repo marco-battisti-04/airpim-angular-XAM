@@ -3,13 +3,17 @@ import { KeyValueTextComponent } from '../key-value-text/key-value-text.componen
 import { FormControl, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { MachineListComponent } from '../machine-list/machine-list.component';
+import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 
 @Component({
   selector: 'app-advance-status-popup',
   standalone: true,
   imports: [KeyValueTextComponent,
     FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    MachinesContainerComponent
+  ],
   templateUrl: './advance-status-popup.component.html',
   styleUrl: './advance-status-popup.component.css'
 })
@@ -21,6 +25,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
   form!:FormGroup
   error: boolean = false;
   errorMessage: string = "";
+  selectedForm: string = "";
   
 
   selectedRadioOption: string = this.order.phase;
@@ -117,5 +122,14 @@ export class AdvanceStatusPopupComponent implements OnInit {
       this.errorMessage = "Please select a phase";
     }
     
+    
+  }
+
+  getSelectedForm() {
+    return this.selectedForm;
+  }
+
+  selectForm(type: string) {
+    this.selectedForm = type;
   }
 }
