@@ -1,5 +1,14 @@
+@if(justName == false) {
 <div class="container"> 
     <span>id: {{ id }}</span>
     <span>name: {{ name }}</span>
     <span>n° of orders: {{ nOrders }}</span>
 </div>
+}
+
+@if(justName == true) {
+    <div class="container"> 
+        <span>{{ name }}</span>
+    </div>
+    
+}
