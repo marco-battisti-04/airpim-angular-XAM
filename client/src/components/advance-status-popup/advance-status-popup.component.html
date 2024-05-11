@@ -7,7 +7,7 @@
             <span class="text-header-container">Status: {{ order.status }}</span>
             <span class="text-header-container">Phase: {{ order.phase }}</span>
         </div>
-        <div class="button-container">
+        <div class="button-exit-container">
             <button class="exit-button" (click)="closePopup()">
             </button>
         </div>
@@ -23,16 +23,25 @@
             
             @if(getSelectedForm() == "") {
                 <div class="input-container">
-                    <div class="button-container">
+
+                    <div class="button-container" style="margin-top: 15%;">
                         <div class="left">
-                            <div style="width: 90%; height: 100%;">
-                                <app-machines-container></app-machines-container>
+                            <div style="width: 90%; height: 100%;" (click)="selectForm('quantity')">
+                                <app-machines-container
+                                [justName]="true"
+                                name="Quantity"
+                                >
+
+                                </app-machines-container>
                             </div>
                         </div>
                         
                         <div class="right">
-                            <div style="width: 90%; height: 100%;">
-                                <app-machines-container></app-machines-container>
+                            <div style="width: 90%; height: 100%;" (click)="selectForm('phase')">
+                                <app-machines-container
+                                [justName]="true"
+                                name="Phase"
+                                ></app-machines-container>
                             </div>
                         </div>
                     </div>
