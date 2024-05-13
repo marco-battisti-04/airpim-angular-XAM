@@ -16,99 +16,73 @@
     <div class="main-container">
 
         @if(getProgressOption() === 0) {
-            <span>test</span>
+            <div class="input-container">
+                <div style="width: 100%; height: 100%; display: flex; justify-content: center;">
+                    <span style="margin-top: 3%; margin-bottom: 3%; font-size: 30px;">This order is already completed</span>
+                </div>   
+            </div>
         }
 
-        @if(getProgressOption() > 0) {   
+        @if(getProgressOption() > 0) {
+            <div class="input-container">
+                <form [formGroup]="form" style="width: 100%; height: 100%;">
+                    <div class="radio-container">
+                        <div class="title-container">
+                            <span style="margin-top: 3%; margin-bottom: 3%; font-size: 30px;">Select a phase</span>
+                        </div>
+
+                        <div class="flex-container">
+                            <div class="left">
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase1"> Fase 1
+                                </label>
             
-            @if(getSelectedForm() == "") {
-                <div class="input-container">
-
-                    <div class="button-container" style="margin-top: 15%;">
-                        <div class="left">
-                            <div style="width: 90%; height: 100%;" (click)="selectForm('quantity')">
-                                <app-machines-container
-                                [justName]="true"
-                                name="Quantity"
-                                >
-
-                                </app-machines-container>
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase2"> Fase 2
+                                </label>
                             </div>
+        
+                            <div class="right">
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase3"> Fase 3
+                                </label>
+            
+                                <label for="">
+                                    <input formControlName ="radio" type="radio" name="radio" value="Fase4"> Fase 4
+                                </label>
+                            </div>
+                        </div>  
+                        <span style="font-size: 20px;">OR</span>
+                    </div>
+
+                    <div class="quantity-container">
+                        <span style="margin-top: 3%; margin-bottom: 3%; font-size: 30px;">Select a quantity to add</span>
+                        
+                        <span style="font-size: larger;">pieces completed: {{order.progress}}</span>
+                        <span style="font-size: larger;">total pieces: {{order.total}}</span>
+                        <div class="graph-container">
+                            <div style="width: 70%; height: 100%; display: flex;">
+                                <div class="loading-bar">
+                                    <div class="progress-bar" [style.width]="getPercentage(order.progress, order.total)"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if(error === true) {
+                            <span style="font-size: larger; color: red;">{{ errorMessage }}</span>
+                        }
+
+                        <div style="display: flex; margin-top: 2%; align-items: center;">
+                            <input #input class="input" type="text" name="quantity" formControlName ="quantity" placeholder="Insert a number of pieces you have completed">
+                            <button class="form-button" (click)="addQuantity($event)">Add quantity</button>
                         </div>
                         
-                        <div class="right">
-                            <div style="width: 90%; height: 100%;" (click)="selectForm('phase')">
-                                <app-machines-container
-                                [justName]="true"
-                                name="Phase"
-                                ></app-machines-container>
-                            </div>
+                        <div class="submit-container">
+                            <button class="form-button" style="height: 45px; " (click)="submitForm($event)">Submit form</button>
                         </div>
                     </div>
-                </div>
-            }
-
-
-            @if(getSelectedForm() === "phase") {
-                <div class="input-container">
-                    <form [formGroup]="form">
-                        <div class="radio-container">
-                            <div class="flex-container">
-                                <div class="left">
-                                    <label for="">
-                                        <input formControlName ="radio" type="radio" name="radio" value="Fase1"> Fase 1
-                                    </label>
-                
-                                    <label for="">
-                                        <input formControlName ="radio" type="radio" name="radio" value="Fase2"> Fase 2
-                                    </label>
-                                </div>
-            
-                                <div class="right">
-                                    <label for="">
-                                        <input formControlName ="radio" type="radio" name="radio" value="Fase3"> Fase 3
-                                    </label>
-                
-                                    <label for="">
-                                        <input formControlName ="radio" type="radio" name="radio" value="Fase4"> Fase 4
-                                    </label>
-                                </div>
-                            </div>
-        
-                            <button (click)="switchPhase($event)" style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Confirm</button>
-                        </div>
-                    </form>
-                </div>
-            }
-
-            @if(getSelectedForm() === "quantity") {
-                    <span style="margin-top: 3%; margin-bottom: 3%; font-size: 30px;">Enter a number of completed pieces</span>
-
-                <span style="font-size: larger;">pieces completed: {{order.progress}}</span>
-                <span style="font-size: larger;">total pieces: {{order.total}}</span>
-                <div class="graph-container">
-                    <div style="width: 70%; height: 100%; display: flex;">
-                        <div class="loading-bar">
-                            <div class="progress-bar" [style.width]="getPercentage(order.progress, order.total)"></div>
-                        </div>
-                    </div>
-                </div>
-                
-
-                @if(error === true) {
-                    <span style="color: red;">{{ errorMessage }}</span>
-                }
-
-                <div class="input-container">
-                    <form [formGroup]="form">
-                        <input class="input" type="text" name="quantity" formControlName ="quantity" placeholder="Insert a number of pieces you have completed">
-                        <button (click)="submitForm($event)" style="width: 100px; height: 35px; color: white; margin-left: 4px; border: none; background-color: #2e2f34">Submit</button>
-                    </form>
-
-                    {{ selectedRadioOption}}
-                </div>
-            }
+                </form>
+            </div>
         }
-        
     </div>
 </div>

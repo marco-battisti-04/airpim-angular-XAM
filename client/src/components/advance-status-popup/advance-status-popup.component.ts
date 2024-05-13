@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { KeyValueTextComponent } from '../key-value-text/key-value-text.component';
 import { FormControl, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { MachineListComponent } from '../machine-list/machine-list.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-advance-status-popup',
@@ -21,15 +22,17 @@ export class AdvanceStatusPopupComponent implements OnInit {
 
   @Input() order: any = {};
   @Output() popup = new EventEmitter<any>();
+
+  @ViewChild('input') input!: ElementRef;
   
   form!:FormGroup
   error: boolean = false;
   errorMessage: string = "";
-  selectedForm: string = "";
   
 
   selectedRadioOption: string = this.order.phase;
-  constructor() {
+  addedQuantity: number = 0;
+  constructor(private http: HttpClient) {
     
   }
 
@@ -57,79 +60,72 @@ export class AdvanceStatusPopupComponent implements OnInit {
     return ( `${percentage.toFixed(2)}%`);
   }
 
-  submitForm(event: any) {
+  async submitForm(event: any) {
+    console.log(this.addedQuantity)
+    let quantityUpdate = await fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/update`, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'PUT',
+      // body: JSON.stringify({update: this.order})
+      body: JSON.stringify({added: this.addedQuantity})
+    }).then(data => { return data.json(); });
+    let phaseUpdate;
+    if(this.selectedRadioOption != this.order.phase) {
+      phaseUpdate = await fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/phase`, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'PUT',
+        body: JSON.stringify({phase: this.form.get('radio')?.value})
+      }).then(data => { return data.json(); });
+    }
 
-    let quantity = this.form.get('quantity')?.value;
-    let quantity2Number;
-    console.log( this.form.get('radio')?.value)
-
-    if(quantity === "") {
-      this.error = true;
-      this.errorMessage = "Please insert a number between 0 and " + (this.order.total - this.order.progress);
-    }else {
-      try {
-        quantity2Number = Number(quantity);
-  
-        this.error = false;
-        this.errorMessage = "";
-        
-        if((quantity2Number + this.order.progress) <= this.order.total) {
-          this.updateQuantity(quantity2Number);
-        }else {
-          this.error = true;
-          this.errorMessage = "Please insert a number between 0 and " + (this.order.total - this.order.progress);
-        }
-      }catch (error) {
-        this.error = true;
-        this.errorMessage = "Please insert a number";
-      }
+    if(quantityUpdate.status == 'ok' || phaseUpdate.status == 'ok') {
+      this.http.get("http://localhost:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
+        this.order = data;
+      })  
     }
   }
 
   async updateQuantity(quantity: number) {
-    this.order.progress += quantity;
 
-    if(this.order.progress === this.order.total) {
-      this.order.status = "Gefertigt";
-    }
-
-    fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/update`, {
-
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'PUT',
-      // body: JSON.stringify({update: this.order})
-      body: JSON.stringify({progress: this.order.progress, status: this.order.status})
-    })
+    this.addedQuantity += quantity;
+    this.input.nativeElement.value = '';
+    console.log("DONE")
   }
 
   switchPhase(event: any) {
 
-    this.form.get('radio')?.value
-    if(this.form.get('radio')?.value != "") {
-      fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/phase`, {
+    if(this.form.get('radio')?.value != null || this.form.get('radio')?.value != "") {
+      this.selectedRadioOption = this.form.get('radio')?.value;
+    }
+  }
 
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'PUT',
-      // body: JSON.stringify({update: this.order})
-      body: JSON.stringify({phase: this.form.get('radio')?.value})
-    })
+  addQuantity(event: any) {
+    if(this.form.get('quantity')?.value != "") {
+
+      this.error = false;
+      this.errorMessage = "";
+      
+      try {
+        let number = Number(this.form.get('quantity')?.value);
+
+        if(Number.isNaN(number)) {
+          this.error = true;
+          this.errorMessage = "Please enter a number for the quantity";
+        }else {
+          this.updateQuantity(number);
+          console.log(number);
+          
+        }
+      }catch(error) {
+        this.error = true;
+        this.errorMessage = "Please enter a number for the quantity";
+      }
     }else {
       this.error = true;
-      this.errorMessage = "Please select a phase";
+      this.errorMessage = "Please enter a quantity";
     }
-    
-    
-  }
-
-  getSelectedForm() {
-    return this.selectedForm;
-  }
-
-  selectForm(type: string) {
-    this.selectedForm = type;
   }
 }
