@@ -10,7 +10,8 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-advance-status-popup',
   standalone: true,
-  imports: [KeyValueTextComponent,
+  imports: [
+    KeyValueTextComponent,
     FormsModule,
     ReactiveFormsModule,
     MachinesContainerComponent
@@ -62,7 +63,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
 
   async submitForm(event: any) {
     console.log(this.addedQuantity)
-    let quantityUpdate = await fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/update`, {
+    let quantityUpdate = await fetch(`http://10.0.0.152:50000/order/${this.order.mc}/${this.order.id}/update`, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -72,7 +73,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
     }).then(data => { return data.json(); });
     let phaseUpdate;
     if(this.selectedRadioOption != this.order.phase) {
-      phaseUpdate = await fetch(`http://localhost:50000/order/${this.order.mc}/${this.order.id}/phase`, {
+      phaseUpdate = await fetch(`http://10.0.0.152:50000/order/${this.order.mc}/${this.order.id}/phase`, {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -82,7 +83,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
     }
 
     if(quantityUpdate.status == 'ok' || phaseUpdate.status == 'ok') {
-      this.http.get("http://localhost:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
+      this.http.get("http://10.0.0.152:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
         this.order = data;
       })  
     }
