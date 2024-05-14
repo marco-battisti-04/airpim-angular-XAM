@@ -19,7 +19,7 @@ export class MachineListComponent {
   }
 
   async getMachines() {
-    this.machines = await fetch('http://localhost:50000/machines').then(data => { return data.json(); });
+    this.machines = await fetch('http://10.0.0.152:50000/machines').then(data => { return data.json(); });
 
     let orderList = [];
     let currentIndex = 0;
