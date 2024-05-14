@@ -9,7 +9,6 @@ body {
     width: 100%;
     height: 100vh;
     color: white;
-    /* TODO: change background color to the correct one */
     background-color: #4b4c54;
 }
 html, body { height: 100%; }
