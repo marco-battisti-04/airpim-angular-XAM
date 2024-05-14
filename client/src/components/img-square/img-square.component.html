@@ -1,4 +1,4 @@
-@if(invisible === false) {
+@if(invisible === false && text  != "") {
     <div class="container">      
         <div class="logo-container">
             <img class="logo" src="{{img}}" alt="">
@@ -14,3 +14,8 @@
     <div class="invisible-container">      
     </div>
 }       
+
+@if(invisible === false && text  == "") {
+    <div class="no-text-container">      
+    </div>
+}
