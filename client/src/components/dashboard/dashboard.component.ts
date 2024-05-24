@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.component';
 import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-status-popup.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
+import { myConfig } from '../../config/myConfig';
 
 @Component({
   selector: 'app-dashboard',
@@ -57,7 +58,8 @@ export class DashboardComponent {
 
   constructor(
     private http: HttpClient,
-    private route: ActivatedRoute,      
+    private route: ActivatedRoute,
+    private config: myConfig 
   ) {
 
     this.route.paramMap.subscribe(params => {
@@ -81,7 +83,7 @@ export class DashboardComponent {
   }
 
   async getOrder(mc: number, orderId: number) {
-    this.http.get("http://10.0.0.152:50000/order/" + mc + "/" + orderId).subscribe((data: any) => {
+    this.http.get(`${this.config.getServerUrl()}/order/${mc}/${orderId}`).subscribe((data: any) => {
         this.order = data;
     })
   }
@@ -102,7 +104,7 @@ export class DashboardComponent {
   }
 
   refreshData() {
-    this.http.get("http://10.0.0.152:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
+    this.http.get(`${this.config.getServerUrl()}/order/${this.order.mc}/${this.order.id}`).subscribe((data: any) => {
         this.order = data;
     })
   }

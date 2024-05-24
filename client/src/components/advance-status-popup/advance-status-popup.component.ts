@@ -6,6 +6,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { MachineListComponent } from '../machine-list/machine-list.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 import { HttpClient } from '@angular/common/http';
+import { myConfig } from '../../config/myConfig';
 
 @Component({
   selector: 'app-advance-status-popup',
@@ -33,7 +34,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
 
   selectedRadioOption: string = this.order.phase;
   addedQuantity: number = 0;
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private config: myConfig) {
     
   }
 
@@ -63,7 +64,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
 
   async submitForm(event: any) {
     console.log(this.addedQuantity)
-    let quantityUpdate = await fetch(`http://10.0.0.152:50000/order/${this.order.mc}/${this.order.id}/update`, {
+    let quantityUpdate = await fetch(`${this.config.getServerUrl()}/order/${this.order.mc}/${this.order.id}/update`, {
       headers: {
         'Content-Type': 'application/json'
       },
@@ -73,7 +74,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
     }).then(data => { return data.json(); });
     let phaseUpdate;
     if(this.selectedRadioOption != this.order.phase) {
-      phaseUpdate = await fetch(`http://10.0.0.152:50000/order/${this.order.mc}/${this.order.id}/phase`, {
+      phaseUpdate = await fetch(`${this.config.getServerUrl()}/order/${this.order.mc}/${this.order.id}/phase`, {
         headers: {
           'Content-Type': 'application/json'
         },
@@ -83,7 +84,7 @@ export class AdvanceStatusPopupComponent implements OnInit {
     }
 
     if(quantityUpdate.status == 'ok' || phaseUpdate.status == 'ok') {
-      this.http.get("http://10.0.0.152:50000/order/" + this.order.mc + "/" + this.order.id).subscribe((data: any) => {
+      this.http.get(`${this.config.getServerUrl()}/order/${this.order.mc}/${this.order.id}`).subscribe((data: any) => {
         this.order = data;
       })  
     }

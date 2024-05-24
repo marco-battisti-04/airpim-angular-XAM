@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
+import { Router } from '@angular/router';
+import { myConfig } from '../../config/myConfig';
 
 @Component({
   selector: 'app-machine-list',
@@ -14,12 +16,15 @@ export class MachineListComponent {
   
   rowMachinesList: any[] = [];
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private config: myConfig
+  ) {
     this.getMachines();
   }
 
   async getMachines() {
-    this.machines = await fetch('http://10.0.0.152:50000/machines').then(data => { return data.json(); });
+    this.machines = await fetch(this.config.getServerUrl() + '/machines').then(data => { return data.json(); });
 
     let orderList = [];
     let currentIndex = 0;
@@ -40,6 +45,7 @@ export class MachineListComponent {
   }
 
   goToMachine(mc: number) {
-    window.location.href = `/orders/${mc}/list`;
+    this.router.navigate([`orders/${mc}/list`]);
+    // window.location.href = `/orders/${mc}/list`;
   }
 }

@@ -3,6 +3,7 @@ import { HeaderComponent } from '../header/header.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersContainerComponent } from '../orders-container/orders-container.component';
+import { myConfig } from '../../config/myConfig';
 
 @Component({
   selector: 'app-order-list',
@@ -18,7 +19,8 @@ export class OrderListComponent {
   pageTitle: string = "";
 
   constructor(
-    private route: ActivatedRoute,   
+    private route: ActivatedRoute,
+    private config: myConfig
   ) {
 
     this.route.paramMap.subscribe(params => {
@@ -35,7 +37,7 @@ export class OrderListComponent {
   }
 
   async getMachines(mc: number) {
-    this.machines = await fetch(`http://10.0.0.152:50000/${mc}/orders`).then(data => { return data.json(); });
+    this.machines = await fetch(`${this.config.getServerUrl()}}/${mc}/orders`).then(data => { return data.json(); });
 
     let orderList = [];
     let currentIndex = 0;
