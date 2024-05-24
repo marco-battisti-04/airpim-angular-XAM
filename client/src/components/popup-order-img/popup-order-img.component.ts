@@ -11,14 +11,13 @@ import {CdkDrag} from '@angular/cdk/drag-drop';
 })
 export class PopupOrderImgComponent {
 
-  @Input() img: string = "";
+  @Input() img: string = ""; // TODO: passare l'immagine
   @Output() popup = new EventEmitter<boolean>();
+
+  SERVER_URL = "http://localhost:50000";
   
   @ViewChild('container') container!: ElementRef;
   @ViewChild('image') image!: ElementRef;
-
-  
-  imageSrc!: SafeUrl;
 
   constructor(private sanitizer: DomSanitizer) { 
   }
@@ -32,11 +31,14 @@ export class PopupOrderImgComponent {
     if(this.img === "") {
       return "../../assets/images/backgrouond.jpg";
     }else {
-      const imageBase64 = this.img;
-      const imageUrl = 'data:image/jpeg;base64,' + imageBase64;
-      this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
-      console.log(this.imageSrc)
-      return this.imageSrc;
+      // FIXME: questo passa l'immagine intera
+      // const imageBase64 = this.img;
+      // const imageUrl = 'data:image/jpeg;base64,' + imageBase64;
+      // this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
+      // console.log(this.imageSrc)
+
+      let imgsrc = `${this.SERVER_URL}/images/${this.img}`
+      return imgsrc;
     }
   }
 
