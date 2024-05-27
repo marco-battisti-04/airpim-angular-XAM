@@ -22,6 +22,7 @@ import { myConfig } from '../../config/myConfig';
 
     CdkDrag
   ],
+  providers: [myConfig],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })  

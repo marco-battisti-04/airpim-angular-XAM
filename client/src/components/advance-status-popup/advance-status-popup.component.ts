@@ -17,6 +17,7 @@ import { myConfig } from '../../config/myConfig';
     ReactiveFormsModule,
     MachinesContainerComponent
   ],
+  providers: [myConfig],
   templateUrl: './advance-status-popup.component.html',
   styleUrl: './advance-status-popup.component.css'
 })

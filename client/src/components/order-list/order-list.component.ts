@@ -9,6 +9,7 @@ import { myConfig } from '../../config/myConfig';
   selector: 'app-order-list',
   standalone: true,
   imports: [HeaderComponent, MachinesContainerComponent, OrdersContainerComponent],
+  providers: [myConfig],
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.css'
 })

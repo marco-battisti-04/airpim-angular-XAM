@@ -8,6 +8,7 @@ import { myConfig } from '../../config/myConfig';
   selector: 'app-machine-list',
   standalone: true,
   imports: [HeaderComponent, MachinesContainerComponent],
+  providers: [myConfig],
   templateUrl: './machine-list.component.html',
   styleUrl: './machine-list.component.css'
 })

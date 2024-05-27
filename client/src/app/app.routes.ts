@@ -5,11 +5,11 @@ import { OrderListComponent } from '../components/order-list/order-list.componen
 import { MachineListComponent } from '../components/machine-list/machine-list.component';
 
 export const routes: Routes = [
-    // {
-    //     path: '',
-    //     redirectTo: 'machines/list',
-    //     pathMatch: 'full'
-    // },
+    {
+        path: '',
+        redirectTo: 'machines/list',
+        pathMatch: 'full'
+    },
     {
         path: 'machines/list',
         component: MachineListComponent
@@ -24,6 +24,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'list'
+        redirectTo: 'machines/list'
     }
 ];
