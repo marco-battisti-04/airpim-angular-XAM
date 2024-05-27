@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersContainerComponent } from '../orders-container/orders-container.component';
 import { myConfig } from '../../config/myConfig';
 
@@ -21,7 +21,8 @@ export class OrderListComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private config: myConfig
+    private config: myConfig,
+    private router: Router
   ) {
 
     this.route.paramMap.subscribe(params => {
@@ -38,8 +39,8 @@ export class OrderListComponent {
   }
 
   async getMachines(mc: number) {
-    this.machines = await fetch(`${this.config.getServerUrl()}}/${mc}/orders`).then(data => { return data.json(); });
-
+    this.machines = await fetch(`${this.config.getServerUrl()}/${mc}/orders`).then(data => { return data.json(); });
+    console.log(this.machines)
     let orderList = [];
     let currentIndex = 0;
     let totalItems = this.machines.length;
@@ -59,10 +60,10 @@ export class OrderListComponent {
   }
 
   goToOrder(id: number) {
-    window.location.href = `/dashboard/${this.mc}/${id}/`;
+   this.router.navigate([`/dashboard/${this.mc}/${id}`]);
   }
 
   goBack() {
-    window.location.href = `/machines/list`;
+    this.router.navigate([`/machines/list`]);
   }
 }

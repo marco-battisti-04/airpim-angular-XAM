@@ -5,7 +5,7 @@ import { IMAGE_CONFIG } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { ImgSquareComponent } from '../img-square/img-square.component';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.component';
 import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-status-popup.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
@@ -59,6 +59,7 @@ export class DashboardComponent {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private route: ActivatedRoute,
     private config: myConfig 
   ) {
@@ -117,5 +118,19 @@ export class DashboardComponent {
 
   closeStatusForm(event: any) {
     this.isFormPopupVisible = event;
+  }
+
+  redirect(location: string) {
+
+    switch(location) {
+      case 'orders': {
+        this.router.navigate([`orders/${this.mcId}/list`]);
+        break;
+      }
+      case 'machines': {
+        this.router.navigate([`machines/list`]);
+        break;
+      }
+    }
   }
 }

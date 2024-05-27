@@ -101,8 +101,11 @@
 
                 <div class="space-between"></div>
 
-                <div class="square" id="space-left">
-                    <app-img-square></app-img-square>
+                <div class="square" (click)="redirect('orders')">
+                    <app-img-square
+                        img="../../assets/images/page_icons/form.png"
+                        text="Orders"
+                    ></app-img-square>
                 </div>
 
                 <div class="space-between"></div>

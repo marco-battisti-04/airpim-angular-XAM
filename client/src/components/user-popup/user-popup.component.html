@@ -1,0 +1,25 @@
+<div class="container">
+    
+    <div class="header-container" style="border-bottom: 5px solid black;">
+        <div class="data-container">
+            <span class="text-header-container" style="margin-left: 3%;">User ID: {{ id }}</span>
+            <span class="text-header-container">Username: {{ username }}</span>
+        </div>
+        <div class="button-exit-container">
+            <button class="exit-button" (click)="closePopup()">
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+
+        
+        <div class="form">
+            <span style="color: red; font-size: 20px; margin-top: 4%;">{{ errorMessage }}</span>
+
+            <span style="font-size: 30px; margin-top:3%;">Provide the pin</span>
+            <input type="text" #input>
+            <button class="form-button" (click)="submitForm($event)">Log in</button>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,7 @@
+import { Injectable } from "@angular/core";
 import { myConfig } from "../config/myConfig"
 
+@Injectable()
 export class UserService {
 
     constructor(private config: myConfig) {
@@ -10,16 +12,27 @@ export class UserService {
     }
 
     isAuthenticated() {
-        return localStorage.getItem('user')
+        return localStorage.getItem('user') ? true : false;
     }
 
-    async login(id: string, pin: String) {
+    async login(id: number, pin: string) {
+
+        let json = { 
+            "id": id, 
+            "pin": pin 
+        }
+
         let response = await fetch(`${this.config.getServerUrl()}/login`, {
-            body: JSON.stringify({ 
-                "id": id, 
-                "pin": pin 
-            }),
-        }).then( data => {return data.json() })
+            method: 'POST',
+            body: JSON.stringify(json)
+        }).then( data => {return data.json() });
+
+        if(response.status === 'ok') {
+            localStorage.setItem('user', id + "");
+            return response;
+        }else {
+            return response;
+        }
     }
     
     async logout() {

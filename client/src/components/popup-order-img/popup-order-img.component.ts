@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import {CdkDrag} from '@angular/cdk/drag-drop'; 
+import { myConfig } from '../../config/myConfig';
 
 @Component({
   selector: 'app-popup-order-img',
@@ -14,12 +15,15 @@ export class PopupOrderImgComponent {
   @Input() img: string = ""; // TODO: passare l'immagine
   @Output() popup = new EventEmitter<boolean>();
 
-  SERVER_URL = "http://localhost:50000";
+  // SERVER_URL = this.;
   
   @ViewChild('container') container!: ElementRef;
   @ViewChild('image') image!: ElementRef;
 
-  constructor(private sanitizer: DomSanitizer) { 
+  constructor(
+    private sanitizer: DomSanitizer,
+    private config: myConfig
+  ) { 
   }
 
   closePopup() {
@@ -37,7 +41,7 @@ export class PopupOrderImgComponent {
       // this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(imageUrl);
       // console.log(this.imageSrc)
 
-      let imgsrc = `${this.SERVER_URL}/images/${this.img}`
+      let imgsrc = `${this.config.getServerUrl()}/images/${this.img}`
       return imgsrc;
     }
   }

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="header-container">
+        <app-header
+            [isTitle]="true"
+            pageTitle="Click a User to Log in"
+        ></app-header>
+    </div>
+
+    <div class="main-container">
+        <div class="search-container">
+        </div>
+
+        <div class="list-container">
+            @for (rowList of rowMachinesList; track rowList){
+                <div class="row">
+                    @for (item of rowList; track item.id){
+                        <div class="user-container" (click)="loginWithUser(item.id, item.username)">
+                            <app-user-container
+                                [id]="item.id"
+                                [username]="item.username"
+                            ></app-user-container>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+    </div>
+
+    @if(popup == true) {
+        <div class="popup-container" cdkDrag>
+            <app-user-popup
+                [id]="selectedId"
+                [username]="selectedUsername"
+                (popup)="closePopup($event)"
+            ></app-user-popup>
+        </div>
+    }
+</div>

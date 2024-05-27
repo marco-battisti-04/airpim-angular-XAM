@@ -1,0 +1,57 @@
+
+.container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-container {
+    width: 100%;
+    height: 10%;
+    z-index: 3;
+}
+
+.main-container {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    z-index: 3;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-container {
+    width: 95%;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 30%;
+}
+
+
+.user-container {
+    width: 14%;
+    height: 90%;
+    margin: 1%;
+}
+
+.popup-container {
+    width: 42%;
+    height: 55%;
+    z-index: 4;
+    position: absolute;
+    resize: both;
+    overflow: auto;
+}
