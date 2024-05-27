@@ -16,7 +16,8 @@ export class UserService {
     }
 
     async login(id: number, pin: string) {
-
+        //FIXME: sistema errore
+        // fa la chiamata all'api di test, non funziona, non so se è un problema di api
         let json = { 
             "id": id, 
             "pin": pin 
