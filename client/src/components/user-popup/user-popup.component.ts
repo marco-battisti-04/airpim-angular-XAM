@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, Validators,ReactiveFormsModule } from '@angular/forms';
 import { UserService } from '../../services/userService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-popup',
@@ -25,9 +26,12 @@ export class UserPopupComponent {
   errorMessage: string = "";
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
-
+    if(this.userService.isAuthenticated()) {
+      this.router.navigate(['/machines/list']);
+    }
   }
   
   closePopup() {
