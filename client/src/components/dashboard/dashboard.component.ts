@@ -10,6 +10,7 @@ import { PopupOrderImgComponent } from '../popup-order-img/popup-order-img.compo
 import { AdvanceStatusPopupComponent } from '../advance-status-popup/advance-status-popup.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { myConfig } from '../../config/myConfig';
+import { UserService } from '../../services/userService';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,7 +23,7 @@ import { myConfig } from '../../config/myConfig';
 
     CdkDrag
   ],
-  providers: [myConfig],
+  providers: [myConfig, UserService],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })  
@@ -38,8 +39,8 @@ export class DashboardComponent {
   isPopupVisible: boolean = false;
   isFormPopupVisible: boolean = false;
   popupImg: string = "";
-
   
+  // ORDER SAMPLE 
   order: any = {
     mc: 0,
     id: 0,
@@ -61,8 +62,12 @@ export class DashboardComponent {
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private config: myConfig 
+    private config: myConfig,
+    private userService: UserService
   ) {
+    if(!this.userService.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
 
     this.route.paramMap.subscribe(params => {
       const mc = params.get('mc');

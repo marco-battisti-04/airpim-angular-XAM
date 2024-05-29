@@ -3,12 +3,13 @@ import { HeaderComponent } from '../header/header.component';
 import { MachinesContainerComponent } from '../machines-container/machines-container.component';
 import { Router } from '@angular/router';
 import { myConfig } from '../../config/myConfig';
+import { UserService } from '../../services/userService';
 
 @Component({
   selector: 'app-machine-list',
   standalone: true,
   imports: [HeaderComponent, MachinesContainerComponent],
-  providers: [myConfig],
+  providers: [myConfig, UserService],
   templateUrl: './machine-list.component.html',
   styleUrl: './machine-list.component.css'
 })
@@ -19,9 +20,14 @@ export class MachineListComponent {
 
   constructor(
     private router: Router,
-    private config: myConfig
+    private config: myConfig,
+    private userService: UserService
   ) {
-    this.getMachines();
+    if(this.userService.isAuthenticated()) {
+      this.getMachines();
+    }else {
+      this.router.navigate(['/']);
+    }
   }
 
   async getMachines() {

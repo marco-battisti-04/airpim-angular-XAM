@@ -4,12 +4,13 @@ import { MachinesContainerComponent } from '../machines-container/machines-conta
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrdersContainerComponent } from '../orders-container/orders-container.component';
 import { myConfig } from '../../config/myConfig';
+import { UserService } from '../../services/userService';
 
 @Component({
   selector: 'app-order-list',
   standalone: true,
   imports: [HeaderComponent, MachinesContainerComponent, OrdersContainerComponent],
-  providers: [myConfig],
+  providers: [myConfig, UserService],
   templateUrl: './order-list.component.html',
   styleUrl: './order-list.component.css'
 })
@@ -22,8 +23,12 @@ export class OrderListComponent {
   constructor(
     private route: ActivatedRoute,
     private config: myConfig,
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
+    if(!this.userService.isAuthenticated()) {
+      this.router.navigate(['/']);
+    }
 
     this.route.paramMap.subscribe(params => {
       const mc = params.get('mc');

@@ -5,13 +5,14 @@ import { UserPopupComponent } from '../user-popup/user-popup.component';
 import { HeaderComponent } from '../header/header.component';
 import { UserContainerComponent } from '../user-container/user-container.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
+import { UserService } from '../../services/userService';
 
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
   imports: [HeaderComponent, UserPopupComponent, UserContainerComponent, CdkDrag],
-  providers: [myConfig],
+  providers: [myConfig, UserService],
   templateUrl: './user-list.component.html',
   styleUrl: './user-list.component.css'
 })  
@@ -28,13 +29,19 @@ export class UserListComponent {
 
   constructor(
     private config: myConfig, 
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) {
-    this.getUsers()
+    if(this.userService.isAuthenticated()) {
+      this.router.navigate(['/machines/list']);
+    }else{
+      this.getUsers()
+    }
   }
 
   async getUsers() {
     this.users = await fetch(`${this.config.getServerUrl()}/users`).then(data => { return data.json(); });
+    console.log(this.users)
     let list = [];
     let currentIndex = 0;
     let totalItems = this.users.length;
@@ -62,5 +69,8 @@ export class UserListComponent {
 
   closePopup(event: any) {
     this.popup = false;
+    if(this.userService.isAuthenticated()) {
+      this.router.navigate(['/machines/list']);
+    }
   }
 }
