@@ -1,6 +1,8 @@
 import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
 import { myConfig } from "../config/myConfig"
 import { isPlatformBrowser } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
+import { Observable, map } from "rxjs";
 
 @Injectable()
 export class UserService {
@@ -8,6 +10,7 @@ export class UserService {
     private readonly storage!: Storage;
     constructor(
         private config: myConfig,
+        private http: HttpClient,
         @Inject(PLATFORM_ID) private platformId: Object,
     ) {
     }
@@ -26,28 +29,13 @@ export class UserService {
     }
 
     async login(id: number, pin: string) {
-        //FIXME: sistema errore
-        // fa la chiamata all'api di test, non funziona, non so se è un problema di api
-        let json = { 
+        
+        let data = { 
             "id": id, 
             "pin": pin 
         }
 
-        let response = await fetch(`${this.config.getServerUrl()}/login`, {
-            method: 'POST',
-            body: JSON.stringify(json)
-        }).then( data => {return data.json() });
-
-        if(response.status === 'ok') {
-            if(isPlatformBrowser(this.platformId)) {
-                localStorage.setItem('user', id + "");
-                return response;
-            }else{
-                return response;
-            }
-        }else {
-            return response;
-        }
+        return this.http.post(`${this.config.getServerUrl()}/login`, data).subscribe((data: any) => {return data;})        
     }
     
     async logout() {
