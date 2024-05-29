@@ -48,8 +48,8 @@
 }
 
 .popup-container {
-    width: 42%;
-    height: 55%;
+    width: 32%;
+    height: 45%;
     z-index: 4;
     position: absolute;
     resize: both;

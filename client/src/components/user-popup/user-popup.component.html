@@ -14,12 +14,12 @@
     <div class="main-container">
 
         
-        <div class="form">
+        <div class="form" (submit)="submitForm($event)">
             <span style="color: red; font-size: 20px; margin-top: 4%;">{{ errorMessage }}</span>
 
-            <span style="font-size: 30px; margin-top:3%;">Provide the pin</span>
-            <input type="text" #input>
-            <button class="form-button" (click)="submitForm($event)">Log in</button>
+            <span style="font-size: 30px; margin-top:3%;margin-bottom: 4%;">Provide the pin</span>
+            <input type="text"n placeholder="pin. . ." #input>
+            <button type="submit" class="form-button" (click)="submitForm($event)">Log in</button>
         </div>
     </div>
 </div>

@@ -76,13 +76,13 @@ img {
 }
 
 .form {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     width: 60%;
     height: 70%;
-    background-color: green;
 }
 
 .inputs {
@@ -94,3 +94,44 @@ img {
 span {
     font-size: 15px;
 }
+
+
+.form-button {
+    margin-top: auto;
+    margin-bottom: 30px;
+    font-size: large; 
+    color: white; 
+    background-color: #2e2f34; 
+    border: none; 
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+.form-button:hover {
+    background-color: #0056b3;
+    cursor: pointer;
+}
+
+.form-button:active {
+    background-color: #003366;
+}
+
+@keyframes Animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.form-button:hover,
+.form-button:active {
+    animation: Animation 0.3s ease;
+}
+
