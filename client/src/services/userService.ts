@@ -1,10 +1,15 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Inject, PLATFORM_ID } from "@angular/core";
 import { myConfig } from "../config/myConfig"
+import { isPlatformBrowser } from "@angular/common";
 
 @Injectable()
 export class UserService {
-
-    constructor(private config: myConfig) {
+    
+    private readonly storage!: Storage;
+    constructor(
+        private config: myConfig,
+        @Inject(PLATFORM_ID) private platformId: Object,
+    ) {
     }
 
     getUser() {
@@ -13,6 +18,11 @@ export class UserService {
 
     isAuthenticated() {
         return localStorage.getItem('user') ? true : false;
+        if(isPlatformBrowser(this.platformId)) {
+        }else {
+            // console.log("error")
+            return false;
+        }
     }
 
     async login(id: number, pin: string) {
@@ -29,8 +39,12 @@ export class UserService {
         }).then( data => {return data.json() });
 
         if(response.status === 'ok') {
-            localStorage.setItem('user', id + "");
-            return response;
+            if(isPlatformBrowser(this.platformId)) {
+                localStorage.setItem('user', id + "");
+                return response;
+            }else{
+                return response;
+            }
         }else {
             return response;
         }
@@ -40,3 +54,10 @@ export class UserService {
         localStorage.removeItem('user')
     }
 }
+
+
+            // "server": "src/main.server.ts",
+            // "prerender": true,
+            // "ssr": {
+            //   "entry": "server.ts"
+            // }
